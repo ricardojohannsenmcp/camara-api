@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import br.com.literoportugues.model.Especialidade;
 
-public interface EspecialidadeRepository extends JpaRepository<Especialidade, Integer>{
+public interface EspecialidadeRepository extends JpaRepository<Especialidade, Long>{
 
 }

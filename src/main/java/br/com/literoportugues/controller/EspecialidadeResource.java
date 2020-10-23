@@ -34,7 +34,7 @@ public class EspecialidadeResource {
 
 
 	@GetMapping("/{especialidadeId}")
-	public ResponseEntity<Especialidade> recuperar(@PathVariable("especialidadeId") Integer especialidadeId){
+	public ResponseEntity<Especialidade> recuperar(@PathVariable("especialidadeId") Long especialidadeId){
 		Especialidade especialidade =  especialidadeRepository.findById(especialidadeId).orElse(null);
 		if(especialidade == null) {
 
@@ -51,7 +51,7 @@ public class EspecialidadeResource {
 
 
 	@PutMapping("/{especialidadeId}")
-	public ResponseEntity<Especialidade> alterar(@PathVariable("especialidadeId") Integer especialidadeId, @RequestBody Especialidade especialidade) {
+	public ResponseEntity<Especialidade> alterar(@PathVariable("especialidadeId") Long especialidadeId, @RequestBody Especialidade especialidade) {
 
 		Especialidade especialidadeToUpdate =  especialidadeRepository.findById(especialidadeId).orElse(null);
 		if(especialidade == null) {
@@ -64,7 +64,7 @@ public class EspecialidadeResource {
 	
 	@ResponseStatus(code=HttpStatus.OK)
 	@DeleteMapping("/{especialidadeId}")
-	public void remover(@PathVariable("especialidadeId") Integer especialidadeId) {
+	public void remover(@PathVariable("especialidadeId") Long especialidadeId) {
 
 		if(!especialidadeRepository.existsById(especialidadeId)){
             throw new RuntimeException("");

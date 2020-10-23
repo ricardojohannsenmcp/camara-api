@@ -31,10 +31,17 @@ public class RamoResource {
 		Collection<Ramo> ramos = ramoRepository.findAll();
 		return ResponseEntity.ok(ramos);
 	}
+	
+	
+	@GetMapping("/area/{areaId}")
+	public ResponseEntity<Collection<Ramo>> listaPorArea(@PathVariable("areaId")Long areaId){
+		Collection<Ramo> ramos = ramoRepository.findByArea_AreaId(areaId);
+		return ResponseEntity.ok(ramos);
+	}
 
 
 	@GetMapping("/{ramoId}")
-	public ResponseEntity<Ramo> recuperar(@PathVariable("ramoId") Integer ramoId){
+	public ResponseEntity<Ramo> recuperar(@PathVariable("ramoId") Long ramoId){
 		Ramo ramo =  ramoRepository.findById(ramoId).orElse(null);
 		if(ramo == null) {
 
@@ -51,7 +58,7 @@ public class RamoResource {
 
 
 	@PutMapping("/{ramoId}")
-	public ResponseEntity<Ramo> alterar(@PathVariable("ramoId") Integer ramoId, @RequestBody Ramo ramo) {
+	public ResponseEntity<Ramo> alterar(@PathVariable("ramoId") Long ramoId, @RequestBody Ramo ramo) {
 
 		Ramo ramoToUpdate =  ramoRepository.findById(ramoId).orElse(null);
 		if(ramo == null) {
@@ -64,11 +71,8 @@ public class RamoResource {
 	
 	@ResponseStatus(code=HttpStatus.OK)
 	@DeleteMapping("/{ramoId}")
-	public void remover(@PathVariable("ramoId") Integer ramoId) {
+	public void remover(@PathVariable("ramoId") Long ramoId) {
 
-		if(!ramoRepository.existsById(ramoId)){
-            throw new RuntimeException("");
-      }
 		ramoRepository.deleteById(ramoId);
 	}
 
